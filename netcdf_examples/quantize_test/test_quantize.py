@@ -22,10 +22,11 @@ class TestQuantize(unittest.TestCase):
 
     def setUp(self):
         '''
-        In the setup, we build the quantization test
+        In the setup, we build the quantization test, and run it
         '''
         subprocess.run(['make', 'clean'], cwd=self.test_dir)
         subprocess.run(['make', 'quantize_github'], cwd=self.test_dir)
+        subprocess.run('./quantize.exe', cwd=self.test_dir)
 
     def test_cdl_files(self):
         '''
@@ -53,8 +54,6 @@ class TestQuantize(unittest.TestCase):
         they are the same (within self.tolerance) as those produced from
         the test
         '''
-        # Run the executable
-        subprocess.run('./quantize.exe', cwd=self.test_dir)
         for netcdf_file in self.expected_netcdf_files:
             netcdf_fileroot = ''.join(netcdf_file.split('.')[:-1])
             # create our reference netcdf file
