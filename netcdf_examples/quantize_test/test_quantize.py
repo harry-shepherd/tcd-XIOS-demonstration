@@ -49,7 +49,6 @@ class TestQuantize(unittest.TestCase):
 
     def test_check_output(self):
         '''
-        Run the executable
         Generate our reference netcdf files from the cdl files, and ensure
         they are the same (within self.tolerance) as those produced from
         the test
@@ -59,9 +58,12 @@ class TestQuantize(unittest.TestCase):
             # create our reference netcdf file
             reference_ncfile = '{}_ref.nc'.format(netcdf_fileroot)
             subprocess.run(['ncgen', '-k', 'nc4', '-o', reference_ncfile,
-                            '{}.cdl'.format(netcdf_fileroot)])
-            test_results = netCDF4.Dataset(netcdf_file)['field'][:]
-            expected = netCDF4.Dataset(reference_ncfile)['field'][:]
+                            '{}.cdl'.format(netcdf_fileroot)],
+                           cwd=self.test_dir)
+            test_results = netCDF4.Dataset(
+                os.path.join(self.test_dir, netcdf_file)['field'][:]
+            expected = netCDF4.Dataset(
+                os.path.join(self.test_dir, reference_ncfile)['field'][:]
             diff = test_results - expected
             result = numpy.allclose(test_results, expected, rtol=self.tolerance)
             if not result:
