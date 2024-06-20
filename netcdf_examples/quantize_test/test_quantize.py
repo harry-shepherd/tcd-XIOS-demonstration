@@ -1,7 +1,7 @@
 import copy
 import glob
 import netCDF4
-import numpy as np
+import numpy
 import os
 import sys
 import subprocess
