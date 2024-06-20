@@ -61,9 +61,9 @@ class TestQuantize(unittest.TestCase):
                             '{}.cdl'.format(netcdf_fileroot)],
                            cwd=self.test_dir)
             test_results = netCDF4.Dataset(
-                os.path.join(self.test_dir, netcdf_file)['field'][:]
+                os.path.join(self.test_dir, netcdf_file)['field'][:])
             expected = netCDF4.Dataset(
-                os.path.join(self.test_dir, reference_ncfile)['field'][:]
+                os.path.join(self.test_dir, reference_ncfile)['field'][:])
             diff = test_results - expected
             result = numpy.allclose(test_results, expected, rtol=self.tolerance)
             if not result:
