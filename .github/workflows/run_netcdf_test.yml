@@ -1,0 +1,26 @@
+name: run-netcdf-test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  netcdf_test:
+    name: netcdf test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+            sudo apt update
+            sudo apt -yq install $(<dependencies)
+            nc-config --version
+      - name: Build and run quantize test
+        run: |
+            cd netcdf_examples/quantize_test/
+            make quantize_github
+            ./quantize.exe
+            python test_diff.py
+        shell: bash
