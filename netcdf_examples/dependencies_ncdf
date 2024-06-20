@@ -1,0 +1,5 @@
+g++
+libpnetcdf-dev
+netcdf-bin
+python3-numpy
+python3-netcdf4

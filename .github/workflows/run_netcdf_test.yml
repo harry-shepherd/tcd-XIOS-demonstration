@@ -15,12 +15,9 @@ jobs:
       - name: Install dependencies
         run: |
             sudo apt update
-            sudo apt -yq install $(<dependencies)
+            sudo apt -yq install $(<netcdf_examples/dependencies_ncdf)
             nc-config --version
       - name: Build and run quantize test
         run: |
-            cd netcdf_examples/quantize_test/
-            make quantize_github
-            ./quantize.exe
-            python test_diff.py
+            python3 -m unittest discover -v -s netcdf_examples/
         shell: bash
