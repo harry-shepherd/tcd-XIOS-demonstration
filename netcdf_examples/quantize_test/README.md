@@ -22,7 +22,7 @@ struct PackingParams {
 };
 ```
 
-The actual test code is in the file `quantize.c`. This test uses an analytic function for data, in a 2d array of size `dim1_size` x `dim2_size` set in the `main()` function. The analytic function is $z\left(x,y) = x \sin\left( \frac{2 \pi y}{y_\text{max}} \right)$.
+The actual test code is in the file `quantize.c`. This test uses an analytic function for data, in a 2d array of size `dim1_size` x `dim2_size` set in the `main()` function. The analytic function is $z\left(x,y\right) = x \sin\left( \frac{2 \pi y}{y_\text{max}} \right)$.
 
 We loop over all the items in the `packing_params` array, writing the same data in each file defined by this array, setting up the quantization (if required) using the call to `nc_def_var_quantize()`, and the compression (if required) using the call to `nc_def_var_deflate()`. We gave hard wired the deflate to have no shuffle, and a deflate level of one.
 
