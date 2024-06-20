@@ -24,8 +24,8 @@ class TestQuantize(unittest.TestCase):
         '''
         In the setup, we build the quantization test
         '''
-        subprocess.run(['make', 'clean'])
-        subprocess.run(['make', 'quantize_github'])
+        subprocess.run(['make', 'clean'], cwd=self.test_dir)
+        subprocess.run(['make', 'quantize_github'], cwd=self.test_dir)
 
     def test_cdl_files(self):
         '''
