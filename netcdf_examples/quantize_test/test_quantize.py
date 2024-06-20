@@ -48,10 +48,13 @@ class TestQuantize(unittest.TestCase):
 
     def test_check_output(self):
         '''
+        Run the executable
         Generate our reference netcdf files from the cdl files, and ensure
         they are the same (within self.tolerance) as those produced from
         the test
         '''
+        # Run the executable
+        subprocess.run('./quantize.exe', cwd=self.test_dir)
         for netcdf_file in self.expected_netcdf_files:
             netcdf_fileroot = ''.join(netcdf_file.split('.')[:-1])
             # create our reference netcdf file
