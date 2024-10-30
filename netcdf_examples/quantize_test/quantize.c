@@ -83,7 +83,8 @@ int main() {
 
     // Set up compression if appropriate
     if (my_param.compress > 0) {
-      nc_def_var_deflate(ncid, varid, 0, 1, 1);
+      //nc_def_var_deflate(ncid, varid, 0, 1, 1);
+      nc_def_var_zstandard(ncid, varidm 10);
     }
     
     // End definitition
